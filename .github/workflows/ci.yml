@@ -19,9 +19,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build Spring Boot JAR with maven
-      run:
-        cd springboot/app
-        mvn clean package -DskipTests
+      run: cd springboot/app && mvn clean package -DskipTests
 
     - name: Build Spring App Image
       run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/spring-app:latest ./springboot/app
